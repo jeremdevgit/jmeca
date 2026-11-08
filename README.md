@@ -104,7 +104,7 @@ All free and open source — [github.com/jeremdevgit](https://github.com/jeremde
 | Software | Platform | In short |
 |---|---|---|
 | [Boîte à outils](https://github.com/jeremdevgit/boite-a-outils) | Windows, macOS | Computer maintenance and file search |
-| [Carnet Rust](https://github.com/jeremdevgit/carnet-rust) | Windows | Encrypted notebooks and experimental sync |
+| [Carnet de notes](https://github.com/jeremdevgit/carnet-rust) | Windows | Encrypted notebooks and experimental sync |
 | [Pomme](https://github.com/jeremdevgit/pomme) | Windows | Apple Music and local music player |
 | [rJb](https://github.com/jeremdevgit/rjb) | Windows | RGB lighting control |
 | [Ludothèque](https://github.com/jeremdevgit/ludotheque) | macOS | Game library and launcher |

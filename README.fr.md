@@ -151,7 +151,7 @@ Tous libres et gratuits — [github.com/jeremdevgit](https://github.com/jeremdev
 | Logiciel | Plateforme | En bref |
 |---|---|---|
 | [Boîte à outils](https://github.com/jeremdevgit/boite-a-outils) | Windows, macOS | Entretien de l’ordinateur et recherche de fichiers |
-| [Carnet Rust](https://github.com/jeremdevgit/carnet-rust) | Windows | Notes chiffrées et synchronisation expérimentale |
+| [Carnet de notes](https://github.com/jeremdevgit/carnet-rust) | Windows | Notes chiffrées et synchronisation expérimentale |
 | [Pomme](https://github.com/jeremdevgit/pomme) | Windows | Apple Music et musique locale |
 | [rJb](https://github.com/jeremdevgit/rjb) | Windows | Éclairage RGB |
 | [Ludothèque](https://github.com/jeremdevgit/ludotheque) | macOS | Bibliothèque et lanceur de jeux |
