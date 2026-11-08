@@ -4,6 +4,8 @@
 
 Windows、macOS、Linux 用のデスクトップ車両メンテナンス トラッカー。
 
+👉 **[Windows・macOS・Linux 用インストーラーをダウンロード](https://github.com/jeremdevgit/jmeca/releases/tag/v0.1.1-beta.2)**。Windows は `.exe`、Apple Silicon と Intel に対応する macOS は `.pkg` または `.dmg`、Debian/Ubuntu は `.deb` です。SHA-256 の値は `SHA256SUMS.txt` に記載しています。
+
 インターフェイスは、最初の起動時にシステム言語に従います。アプリ内で変更できます。
 
 ## 特長

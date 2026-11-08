@@ -4,6 +4,8 @@
 
 Desktop-Fahrzeugwartungs-Tracker für Windows, macOS und Linux.
 
+👉 **[Installationsdateien für Windows, macOS und Linux herunterladen](https://github.com/jeremdevgit/jmeca/releases/tag/v0.1.1-beta.2)**. Windows: `.exe`; macOS: universelles `.pkg` oder `.dmg`; Debian/Ubuntu: `.deb`. Die SHA-256-Prüfsummen stehen in `SHA256SUMS.txt`.
+
 Die Benutzeroberfläche folgt beim ersten Start Ihrer Systemsprache. Sie können es in der App ändern.
 
 ## Funktionen

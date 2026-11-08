@@ -4,6 +4,8 @@
 
 Tracker desktop per la manutenzione dei veicoli per Windows, macOS e Linux.
 
+👉 **[Scarica gli installer per Windows, macOS e Linux](https://github.com/jeremdevgit/jmeca/releases/tag/v0.1.1-beta.2)**. Windows: `.exe`; macOS universale: `.pkg` o `.dmg`; Debian/Ubuntu: `.deb`. Le impronte SHA-256 sono in `SHA256SUMS.txt`.
+
 L'interfaccia segue la lingua del sistema al primo avvio. Puoi modificarlo nell'app.
 
 ## Caratteristiche

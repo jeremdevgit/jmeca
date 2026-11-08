@@ -4,6 +4,8 @@
 
 Rastreador de manutenção de veículos de desktop para Windows, macOS e Linux.
 
+👉 **[Baixar instaladores para Windows, macOS e Linux](https://github.com/jeremdevgit/jmeca/releases/tag/v0.1.1-beta.2)**. Windows: `.exe`; macOS universal: `.pkg` ou `.dmg`; Debian/Ubuntu: `.deb`. As somas SHA-256 estão em `SHA256SUMS.txt`.
+
 A interface segue o idioma do seu sistema na primeira inicialização. Você pode alterá-lo no aplicativo.
 
 ## Recursos

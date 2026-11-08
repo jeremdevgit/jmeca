@@ -5,11 +5,17 @@
 [![Contrôles et compilations](https://github.com/jeremdevgit/jmeca/actions/workflows/build.yml/badge.svg)](https://github.com/jeremdevgit/jmeca/actions/workflows/build.yml)
 
 
-[English](README.md) · [Español](docs/README.es.md) · [Deutsch](docs/README.de.md) · [Italiano](docs/README.it.md) · [Português](docs/README.pt.md) · [简体中文](docs/README.zh-CN.md) · [日本語](docs/README.ja.md)
+**Français** · [English](README.md) · [Español](docs/README.es.md) · [Deutsch](docs/README.de.md) · [Italiano](docs/README.it.md) · [Português](docs/README.pt.md) · [简体中文](docs/README.zh-CN.md) · [日本語](docs/README.ja.md)
 
-Application de bureau Windows / macOS / Linux, construite en Rust avec Tauri 2 et une interface TypeScript. Elle utilise le moteur web natif du système et n’embarque pas Chromium. Cette version est publiée pour permettre sa validation fonctionnelle.
+**Tous ses véhicules dans un garage chiffré.** JMeca est une application de bureau de **jeremdevgit**, construite en Rust avec Tauri 2 et une interface TypeScript. Elle utilise le moteur web natif du système et n’embarque pas Chromium. Cette version est publiée pour permettre sa validation fonctionnelle.
 
-👉 **[Télécharger la préversion Windows, macOS ou Linux](https://github.com/jeremdevgit/jmeca/releases/tag/v0.1.1-beta.1)**. Il s’agit de premières compilations ; seule la version macOS a été lancée localement. L’application macOS n’est pas notarisée par Apple.
+| | Windows 10/11 | macOS 12+ | Linux |
+|---|---|---|---|
+| Installation | `JMeca-Setup-Windows-x64.exe` | `JMeca-0.1.1-macOS-Universal.pkg` ou `.dmg` | `JMeca-0.1.1-Linux-amd64.deb` |
+| Architecture | x64 | Apple Silicon et Intel | x64 Debian/Ubuntu |
+| Moteur web | WebView2 | WebKit | WebKitGTK 4.1 |
+
+👉 **[Télécharger la préversion Windows, macOS ou Linux](https://github.com/jeremdevgit/jmeca/releases/tag/v0.1.1-beta.2)**.
 
 ## Essayer
 
@@ -17,7 +23,7 @@ Sur le Mac de développement, ouvrir l’application `JMeca.app` livrée sépar�
 
 Pour un garage personnel, créer un mot de passe d’au moins 12 caractères. Il ne peut pas être récupéré. Exporter une sauvegarde chiffrée sur un autre support après les premiers essais.
 
-L’application Mac fournie est compilée pour Apple Silicon, avec signature locale ad hoc, sans notarisation Apple. Les compilations Windows, Linux et Mac Intel ont réussi en CI, sans essai interactif sur leurs systèmes cibles. Une diffusion Mac sans avertissement système demanderait une identité de signature et une notarisation Apple.
+L’application Mac a été lancée localement sur Apple Silicon. Les versions Windows et Linux sont validées par compilation et tests automatisés, sans essai interactif sur leurs systèmes cibles. L’installateur Mac universel est construit en CI ; une diffusion sans avertissement système demanderait une identité de signature et une notarisation Apple.
 
 ## Aperçu en images
 
@@ -31,6 +37,21 @@ Ces captures utilisent des véhicules fictifs et, pour les stations, des prix d�
 
 [Les 18 captures de toutes les fonctions](captures/fr/)
 
+## Installer sur Windows
+
+Télécharger `JMeca-Setup-Windows-x64.exe` depuis la [version publiée](https://github.com/jeremdevgit/jmeca/releases/tag/v0.1.1-beta.2), puis lancer l’installateur. Il crée les raccourcis et l’entrée de désinstallation. WebView2 est requis. L’exécutable n’a pas de certificat commercial ; SmartScreen peut demander une confirmation. Comparer son SHA-256 à `SHA256SUMS.txt` avec `Get-FileHash`.
+
+## Installer sur macOS
+
+- **`.pkg` (conseillé) :** ouvrir le paquet et suivre l’assistant. JMeca est placé dans `/Applications` ; remplacer l’app ne supprime pas le coffre chiffré du profil utilisateur.
+- **`.dmg` :** ouvrir l’image disque et glisser `JMeca.app` dans `Applications`.
+
+L’app macOS est universelle Apple Silicon et Intel. Elle porte une signature d’intégrité ad hoc ; le paquet n’a pas de signature Apple Developer ID et aucun des deux formats n’est notarisé. macOS peut demander *Réglages Système › Confidentialité et sécurité › Ouvrir quand même*. Vérifier le SHA-256 avec `shasum -a 256`.
+
+## Installer sur Linux
+
+Télécharger `JMeca-0.1.1-Linux-amd64.deb` sur un bureau Debian ou Ubuntu x64 compatible et l’installer avec le gestionnaire de paquets. WebKitGTK 4.1 et les dépendances du paquet sont requis. Vérifier le SHA-256 avec `sha256sum`.
+
 ## Contrôles qualité
 
 | Contrôle | Résultat |
@@ -40,9 +61,12 @@ Ces captures utilisent des véhicules fictifs et, pour les stations, des prix d�
 | Parcours navigateur, régression de sécurité et 8 langues | 16 réussis |
 | Tests Rust | 2 réussis |
 | Format Rust et avertissements Clippy | Réussis en local ; imposés en CI |
-| Avis de vulnérabilités JavaScript et Rust | Aucune vulnérabilité connue signalée à la vérification |
+| Audit des dépendances JavaScript | Aucune vulnérabilité connue signalée à la vérification |
+| Audit des dépendances Rust | Aucun avis bloquant ; voir la note `glib` ci-dessous |
 
 Le [workflow GitHub](.github/workflows/build.yml) relance les audits de dépendances, les tests et les compilations Windows/macOS/Linux. Son badge reflète le résultat distant. Deux problèmes du code ont été détectés et corrigés avant publication, avec tests de régression. L’analyse Rust mentionne aussi des avis informatifs sur des dépendances indirectes.
+
+La chaîne Linux WebKitGTK/GTK3 contient un avis connu sur un itérateur de `glib`. JMeca n’appelle pas directement cette API ; la chaîne amont ne propose pas encore de version corrigée compatible. Ce risque résiduel est documenté, sans le présenter comme une faille corrigée.
 
 ## Fonctions présentes
 
@@ -117,8 +141,18 @@ La sauvegarde automatique `.bak` peut garder l’ancien mot de passe après un c
 
 ## GitHub et versions de bureau
 
-Le code source est publié sous GPL-3.0-or-later. Le workflow `.github/workflows/build.yml` se lance manuellement et compile les versions Windows, macOS et Linux. Les artefacts doivent être essayés sur chaque plateforme avant une diffusion comme versions recommandées. La signature Apple de développement n’est pas notarisée. Voir `THIRD_PARTY.md` pour les sources et licences des ressources tierces.
+Le code source est publié sous GPL-3.0-or-later, avec **jeremdevgit** comme éditeur dans les métadonnées. Le workflow `.github/workflows/build.yml` se lance à chaque mise à jour de `main`, sur les PR et manuellement ; il compile les versions Windows, macOS et Linux. Les artefacts doivent être essayés sur chaque plateforme avant une diffusion comme versions recommandées. La signature Apple ad hoc n’est pas une notarisation. Voir `THIRD_PARTY.md` pour les sources et licences des ressources tierces.
 
 ## Mes logiciels
 
-[Profil public : jeremdevgit](https://github.com/jeremdevgit) · [Carnet Rust](https://github.com/jeremdevgit/carnet-rust) · [Suite libre](https://github.com/jeremdevgit/suite-libre) · [Batailles de France](https://github.com/jeremdevgit/batailles-de-france) · [Pomme](https://github.com/jeremdevgit/pomme) · [Ludothèque](https://github.com/jeremdevgit/ludotheque) · [rJb](https://github.com/jeremdevgit/rjb) · [Boîte à outils](https://github.com/jeremdevgit/boite-a-outils).
+Tous libres et gratuits — [github.com/jeremdevgit](https://github.com/jeremdevgit) :
+
+| Logiciel | Plateforme | En bref |
+|---|---|---|
+| [Boîte à outils](https://github.com/jeremdevgit/boite-a-outils) | Windows, macOS | Entretien de l’ordinateur et recherche de fichiers |
+| [Carnet Rust](https://github.com/jeremdevgit/carnet-rust) | Windows | Notes chiffrées et synchronisation expérimentale |
+| [Pomme](https://github.com/jeremdevgit/pomme) | Windows | Apple Music et musique locale |
+| [rJb](https://github.com/jeremdevgit/rjb) | Windows | Éclairage RGB |
+| [Ludothèque](https://github.com/jeremdevgit/ludotheque) | macOS | Bibliothèque et lanceur de jeux |
+| [Suite Libre](https://github.com/jeremdevgit/suite-libre) | Navigateur | Six outils sans compte |
+| [Batailles de France](https://github.com/jeremdevgit/batailles-de-france) | Navigateur | Jeu de stratégie en temps réel |

@@ -62,15 +62,23 @@ jobs:
           npx playwright test
       - run: cargo test --locked --manifest-path src-tauri/Cargo.toml
       - run: cargo clippy --locked --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings
-      - run: npm run desktop:build -- --bundles ${{ matrix.bundle }}
-      - name: Archive macOS app
+      - name: Build Windows or Linux installer
+        if: runner.os != 'macOS'
+        run: npm run desktop:build -- --bundles ${{ matrix.bundle }}
+      - name: Install Intel Rust target for universal macOS build
         if: runner.os == 'macOS'
-        run: ditto -c -k --sequesterRsrc --keepParent src-tauri/target/release/bundle/macos/JMeca.app JMeca-macOS.zip
+        run: rustup target add x86_64-apple-darwin
+      - name: Build universal macOS application
+        if: runner.os == 'macOS'
+        run: npm run desktop:build -- --target universal-apple-darwin --bundles app
+      - name: Package macOS installers
+        if: runner.os == 'macOS'
+        run: zsh scripts/package_macos.sh
       - uses: actions/upload-artifact@v4
         if: runner.os == 'macOS'
         with:
           name: JMeca-${{ matrix.artifact }}
-          path: JMeca-macOS.zip
+          path: dist/installers/*
       - uses: actions/upload-artifact@v4
         if: runner.os == 'Windows'
         with:

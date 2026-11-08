@@ -5,11 +5,17 @@
 [![CI and desktop builds](https://github.com/jeremdevgit/jmeca/actions/workflows/build.yml/badge.svg)](https://github.com/jeremdevgit/jmeca/actions/workflows/build.yml)
 
 
-[Français](README.fr.md) · [Español](docs/README.es.md) · [Deutsch](docs/README.de.md) · [Italiano](docs/README.it.md) · [Português](docs/README.pt.md) · [简体中文](docs/README.zh-CN.md) · [日本語](docs/README.ja.md)
+**English** · [Français](README.fr.md) · [Español](docs/README.es.md) · [Deutsch](docs/README.de.md) · [Italiano](docs/README.it.md) · [Português](docs/README.pt.md) · [简体中文](docs/README.zh-CN.md) · [日本語](docs/README.ja.md)
 
-JMeca is a lightweight desktop garage and maintenance tracker for Windows, macOS and Linux. It uses Tauri 2, Rust and TypeScript, with the operating system's web engine. The interface is available in **French, English, Spanish, German, Italian, Portuguese, Simplified Chinese and Japanese**. It follows the system language on first launch and has a language selector.
+**Look after every vehicle in one encrypted garage.** JMeca is a lightweight desktop garage and maintenance tracker by **jeremdevgit**. It uses Tauri 2, Rust and TypeScript, with the operating system's web engine. The interface is available in **French, English, Spanish, German, Italian, Portuguese, Simplified Chinese and Japanese**. It follows the system language on first launch and has a language selector.
 
-👉 **[Download the Windows, macOS and Linux preview](https://github.com/jeremdevgit/jmeca/releases/tag/v0.1.1-beta.1)**. These are early builds; only macOS was launched locally. The macOS application is not Apple notarized.
+| | Windows 10/11 | macOS 12+ | Linux |
+|---|---|---|---|
+| Installer | `JMeca-Setup-Windows-x64.exe` | `JMeca-0.1.1-macOS-Universal.pkg` or `.dmg` | `JMeca-0.1.1-Linux-amd64.deb` |
+| Architecture | x64 | Apple Silicon and Intel | x64 Debian/Ubuntu |
+| Web engine | WebView2 | WebKit | WebKitGTK 4.1 |
+
+👉 **[Download the Windows, macOS and Linux preview](https://github.com/jeremdevgit/jmeca/releases/tag/v0.1.1-beta.2)**.
 
 ## Features
 
@@ -22,7 +28,7 @@ JMeca is a lightweight desktop garage and maintenance tracker for Windows, macOS
 
 ## Screenshots
 
-Demo screenshots use fictional vehicles and illustrative fuel prices.
+Demo screenshots use fictional vehicles and illustrative fuel prices. They show the real interface captured during browser tests.
 
 ![JMeca dashboard with a generic 3D vehicle](captures/en/02-dashboard-3d.png)
 
@@ -41,15 +47,33 @@ Demo screenshots use fictional vehicles and illustrative fuel prices.
 | Browser flows, security regression and 8 languages | 16 passed |
 | Rust unit tests | 2 passed |
 | Rust formatting and Clippy warnings | Passed locally; enforced in CI |
-| JavaScript and Rust vulnerability advisories | No known vulnerability reported at review time |
+| JavaScript dependency audit | No known vulnerability reported at review time |
+| Rust dependency audit | No blocking advisory; see the Linux `glib` note below |
 
 The [CI workflow](.github/workflows/build.yml) repeats dependency audits, tests and desktop builds on GitHub. Its live badge above reflects the remote run. Static analysis identified two application issues before publication; both were fixed and covered by regression tests. The Rust advisory scan also reports informational maintenance notices for transitive crates; see the build log.
 
-## Try it
+## Windows installation
+
+Download `JMeca-Setup-Windows-x64.exe` from the [release](https://github.com/jeremdevgit/jmeca/releases/tag/v0.1.1-beta.2) and run the installer. It creates application shortcuts and an uninstall entry. WebView2 is required. The executable is not signed with a commercial certificate, so Windows SmartScreen may ask for confirmation. Compare its SHA-256 with `SHA256SUMS.txt` using `Get-FileHash`.
+
+## macOS installation
+
+- **`.pkg` (recommended):** open the installer and follow the steps. The application is installed in `/Applications`; replacing it does not erase the encrypted vault in your user profile.
+- **`.dmg`:** open the disk image and drag `JMeca.app` into `Applications`.
+
+The macOS installers contain a universal Apple Silicon and Intel app. The app has an ad hoc integrity signature, but the package has no Apple Developer ID signature and neither format is notarized. macOS may require *System Settings › Privacy & Security › Open Anyway*. Compare the SHA-256 with `SHA256SUMS.txt` using `shasum -a 256`.
+
+## Linux installation
+
+Download `JMeca-0.1.1-Linux-amd64.deb` on a compatible Debian or Ubuntu x64 desktop and install it with your package manager. WebKitGTK 4.1 and the package dependencies are required. Compare its SHA-256 with `SHA256SUMS.txt` using `sha256sum`.
+
+The Windows and Linux installers pass automated builds and tests but have not been launched interactively on their target systems. The macOS app has been launched locally. This remains a preview for functional review.
+
+## Try it from source
 
 Run `npm ci` followed by `npm run desktop:dev` with the [Tauri prerequisites](https://tauri.app/start/prerequisites/) installed. Choose the demo for fictional data. To store real data, create a password of at least 12 characters and export an encrypted backup to another drive. A browser preview is available with `npm run dev`; its encrypted IndexedDB vault is separate from the desktop app.
 
-Run `npm run build`, `npm test`, `npx playwright test` and `cargo test --locked --manifest-path src-tauri/Cargo.toml` for checks. `npm run desktop:build` builds an installer for the current platform. GitHub Actions can build all three platforms manually; downloaded artifacts must be tested on their target systems before use. The macOS development build is locally signed and is not Apple notarized.
+Run `npm run build`, `npm test`, `npx playwright test` and `cargo test --locked --manifest-path src-tauri/Cargo.toml` for checks. `npm run desktop:build` builds an app or installer for the current platform. On macOS, run `zsh scripts/package_macos.sh` after building the app to create a disk image, an installer package and their checksums. The GitHub workflow builds a universal Mac app with the Intel Rust target installed.
 
 ## Security and limits
 
@@ -59,6 +83,29 @@ Service intervals, compatible part references, tire dimensions and bulb types mu
 
 See [the French documentation](README.fr.md) for detailed behavior and [third-party sources](THIRD_PARTY.md) for data and licenses. Original code is licensed under GPL-3.0-or-later; third-party materials retain their own licenses.
 
+The Linux WebKitGTK/GTK3 dependency chain includes a known `glib` iterator advisory. JMeca does not call that iterator API directly, and the upstream stack does not yet offer a compatible patched `glib`. This residual risk is documented rather than represented as a fixed vulnerability.
+
+## Repository layout
+
+```text
+src/                     TypeScript interface, vault and localization
+src-tauri/               Rust desktop host and native commands
+tests/                   Core, browser and security regression tests
+captures/                Screenshots with demonstration data
+scripts/package_macos.sh macOS disk image and installer package
+docs/                    Six additional documentation languages
+```
+
 ## My software
 
-[Public profile: jeremdevgit](https://github.com/jeremdevgit) · [Carnet Rust](https://github.com/jeremdevgit/carnet-rust) · [Suite libre](https://github.com/jeremdevgit/suite-libre) · [Batailles de France](https://github.com/jeremdevgit/batailles-de-france) · [Pomme](https://github.com/jeremdevgit/pomme) · [Ludothèque](https://github.com/jeremdevgit/ludotheque) · [rJb](https://github.com/jeremdevgit/rjb) · [Boîte à outils](https://github.com/jeremdevgit/boite-a-outils).
+All free and open source — [github.com/jeremdevgit](https://github.com/jeremdevgit):
+
+| Software | Platform | In short |
+|---|---|---|
+| [Boîte à outils](https://github.com/jeremdevgit/boite-a-outils) | Windows, macOS | Computer maintenance and file search |
+| [Carnet Rust](https://github.com/jeremdevgit/carnet-rust) | Windows | Encrypted notebooks and experimental sync |
+| [Pomme](https://github.com/jeremdevgit/pomme) | Windows | Apple Music and local music player |
+| [rJb](https://github.com/jeremdevgit/rjb) | Windows | RGB lighting control |
+| [Ludothèque](https://github.com/jeremdevgit/ludotheque) | macOS | Game library and launcher |
+| [Suite Libre](https://github.com/jeremdevgit/suite-libre) | Browser | Six tools without an account |
+| [Batailles de France](https://github.com/jeremdevgit/batailles-de-france) | Browser | Real-time strategy game |

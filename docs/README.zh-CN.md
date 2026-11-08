@@ -4,6 +4,8 @@
 
 适用于 Windows、macOS 和 Linux 的桌面车辆维护跟踪器。
 
+👉 **[下载 Windows、macOS 和 Linux 安装包](https://github.com/jeremdevgit/jmeca/releases/tag/v0.1.1-beta.2)**。Windows：`.exe`；通用 macOS：`.pkg` 或 `.dmg`；Debian/Ubuntu：`.deb`。SHA-256 校验值见 `SHA256SUMS.txt`。
+
 首次启动时，界面将遵循您的系统语言。您可以在应用程序中更改它。
 
 ## 特点
