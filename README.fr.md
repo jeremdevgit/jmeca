@@ -2,7 +2,7 @@
 
 # JMeca 0.1.1 — garage personnel chiffré
 
-[![Contrôles et compilations](https://github.com/jeremdevgit/jmeca/actions/workflows/build.yml/badge.svg)](https://github.com/jeremdevgit/jmeca/actions/workflows/build.yml)
+[![Contrôles et compilations](https://github.com/jeremdevgit/jmeca/actions/workflows/build.yml/badge.svg)](https://github.com/jeremdevgit/jmeca/actions/workflows/build.yml) [![CodeQL](https://github.com/jeremdevgit/jmeca/actions/workflows/codeql.yml/badge.svg)](https://github.com/jeremdevgit/jmeca/actions/workflows/codeql.yml)
 
 
 **Français** · [English](README.md) · [Español](docs/README.es.md) · [Deutsch](docs/README.de.md) · [Italiano](docs/README.it.md) · [Português](docs/README.pt.md) · [简体中文](docs/README.zh-CN.md) · [日本語](docs/README.ja.md)
@@ -61,6 +61,7 @@ Télécharger `JMeca-0.1.1-Linux-amd64.deb` sur un bureau Debian ou Ubuntu x64 c
 | Parcours navigateur, régression de sécurité et 8 langues | 16 réussis |
 | Tests Rust | 2 réussis |
 | Format Rust et avertissements Clippy | Réussis en local ; imposés en CI |
+| CodeQL | Actions, TypeScript, Python et Rust sur GitHub |
 | Audit des dépendances JavaScript | Aucune vulnérabilité connue signalée à la vérification |
 | Audit des dépendances Rust | Aucun avis bloquant ; voir la note `glib` ci-dessous |
 

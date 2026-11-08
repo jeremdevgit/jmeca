@@ -2,7 +2,7 @@
 
 # JMeca
 
-[![CI and desktop builds](https://github.com/jeremdevgit/jmeca/actions/workflows/build.yml/badge.svg)](https://github.com/jeremdevgit/jmeca/actions/workflows/build.yml)
+[![CI and desktop builds](https://github.com/jeremdevgit/jmeca/actions/workflows/build.yml/badge.svg)](https://github.com/jeremdevgit/jmeca/actions/workflows/build.yml) [![CodeQL](https://github.com/jeremdevgit/jmeca/actions/workflows/codeql.yml/badge.svg)](https://github.com/jeremdevgit/jmeca/actions/workflows/codeql.yml)
 
 
 **English** · [Français](README.fr.md) · [Español](docs/README.es.md) · [Deutsch](docs/README.de.md) · [Italiano](docs/README.it.md) · [Português](docs/README.pt.md) · [简体中文](docs/README.zh-CN.md) · [日本語](docs/README.ja.md)
@@ -47,6 +47,7 @@ Demo screenshots use fictional vehicles and illustrative fuel prices. They show 
 | Browser flows, security regression and 8 languages | 16 passed |
 | Rust unit tests | 2 passed |
 | Rust formatting and Clippy warnings | Passed locally; enforced in CI |
+| CodeQL | Actions, TypeScript, Python and Rust on GitHub |
 | JavaScript dependency audit | No known vulnerability reported at review time |
 | Rust dependency audit | No blocking advisory; see the Linux `glib` note below |
 

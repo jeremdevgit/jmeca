@@ -14,12 +14,12 @@ jobs:
     name: Dependency security
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: '22'
           cache: npm
-      - uses: dtolnay/rust-toolchain@stable
+      - uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
       - run: npm ci
       - run: npm audit
       - run: cargo install cargo-audit --locked
@@ -42,12 +42,12 @@ jobs:
             artifact: linux
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: '22'
           cache: npm
-      - uses: dtolnay/rust-toolchain@stable
+      - uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
       - name: Linux dependencies
         if: runner.os == 'Linux'
         run: sudo apt-get update && sudo apt-get install -y libwebkit2gtk-4.1-dev build-essential curl wget file libxdo-dev libssl-dev librsvg2-dev libayatana-appindicator3-dev patchelf
@@ -74,18 +74,31 @@ jobs:
       - name: Package macOS installers
         if: runner.os == 'macOS'
         run: zsh scripts/package_macos.sh
-      - uses: actions/upload-artifact@v4
+      - name: Checksum Windows installer
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $installer = Get-ChildItem src-tauri/target/release/bundle/nsis -Filter *.exe | Select-Object -First 1
+          if (-not $installer) { throw 'Windows installer missing' }
+          $hash = (Get-FileHash -Algorithm SHA256 $installer.FullName).Hash.ToLowerInvariant()
+          [IO.File]::WriteAllText('SHA256SUMS-windows.txt', "$hash  $($installer.Name)`n", [Text.UTF8Encoding]::new($false))
+      - name: Checksum Linux installer
+        if: runner.os == 'Linux'
+        run: cd src-tauri/target/release/bundle/deb && sha256sum *.deb > SHA256SUMS-linux.txt
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: runner.os == 'macOS'
         with:
           name: JMeca-${{ matrix.artifact }}
           path: dist/installers/*
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: runner.os == 'Windows'
         with:
           name: JMeca-${{ matrix.artifact }}
-          path: src-tauri/target/release/bundle/nsis/*.exe
-      - uses: actions/upload-artifact@v4
+          path: |
+            src-tauri/target/release/bundle/nsis/*.exe
+            SHA256SUMS-windows.txt
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: runner.os == 'Linux'
         with:
           name: JMeca-${{ matrix.artifact }}
-          path: src-tauri/target/release/bundle/deb/*.deb
+          path: src-tauri/target/release/bundle/deb/*
