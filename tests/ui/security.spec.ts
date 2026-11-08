@@ -1,0 +1,33 @@
+import {test,expect} from '@playwright/test';
+import {demoVault} from '../../src/domain';
+import {deriveKey,encryptVault} from '../../src/crypto';
+
+test('restored folder text and IDs remain inert in HTML',async({page})=>{
+ const vault=demoVault();
+ const marker='<img src=x onerror="window.__jmeca_xss=1">';
+ const folderId='folder" onmouseover="window.__jmeca_xss=1';
+ vault.folders[0].id=folderId;
+ vault.folders[0].name=marker;
+ vault.folders[0].clientName=marker;
+ vault.folders[0].contact=marker;
+ vault.vehicles[0].folderId=folderId;
+ const password='Security-test-password-123!';
+ const salt=crypto.getRandomValues(new Uint8Array(16));
+ const key=await deriveKey(password,salt);
+ const envelope=await encryptVault(vault,key,salt);
+ await page.goto('/');
+ const chooser=page.waitForEvent('filechooser');
+ await page.getByRole('button',{name:'Restaurer une sauvegarde'}).click();
+ await (await chooser).setFiles({name:'malicious.jmeca',mimeType:'application/octet-stream',buffer:Buffer.from(envelope)});
+ const dialog=page.getByRole('dialog');
+ await dialog.getByLabel('Mot de passe de la sauvegarde').fill(password);
+ await dialog.getByRole('checkbox').check();
+ await dialog.getByRole('button',{name:'Restaurer et remplacer'}).click();
+ await page.locator('nav [data-page="folders"]').click();
+ await page.locator('.folder-tabs [data-id]').nth(1).click();
+ await expect(page.locator('.page-heading h1')).toHaveText(marker);
+ await expect(page.locator('.folder-profile h2')).toHaveText(marker);
+ await expect(page.locator('.folder-tabs [data-id]').nth(1)).toHaveAttribute('data-id',folderId);
+ await expect(page.locator('.page-heading img,.folder-profile img,.folder-tabs img')).toHaveCount(0);
+ expect(await page.evaluate(()=>Boolean((window as any).__jmeca_xss))).toBe(false);
+});

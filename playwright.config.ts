@@ -1,0 +1,2 @@
+import {defineConfig} from '@playwright/test';
+export default defineConfig({testDir:'tests/ui',timeout:120000,expect:{timeout:20000},workers:1,use:{baseURL:'http://127.0.0.1:1420',headless:true,locale:'fr-FR',timezoneId:'Europe/Paris',viewport:{width:1440,height:1000},launchOptions:{executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE,args:['--use-gl=angle','--use-angle=swiftshader','--enable-webgl']}},reporter:[['list'],['json',{outputFile:'test-results/ui-results.json'}]],webServer:{command:'npm run dev',url:'http://127.0.0.1:1420',reuseExistingServer:true}});

@@ -1,0 +1,81 @@
+name: CI and desktop builds
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: jmeca-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  security:
+    name: Dependency security
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - uses: dtolnay/rust-toolchain@stable
+      - run: npm ci
+      - run: npm audit
+      - run: cargo install cargo-audit --locked
+      - run: cargo audit --file src-tauri/Cargo.lock
+  desktop:
+    name: ${{ matrix.artifact }} build and tests
+    needs: security
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-latest
+            bundle: app
+            artifact: macos
+          - os: windows-latest
+            bundle: nsis
+            artifact: windows
+          - os: ubuntu-24.04
+            bundle: deb
+            artifact: linux
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Linux dependencies
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libwebkit2gtk-4.1-dev build-essential curl wget file libxdo-dev libssl-dev librsvg2-dev libayatana-appindicator3-dev patchelf
+      - run: npm ci
+      - run: npm run build
+      - run: npm test
+      - name: Browser tests
+        if: runner.os == 'Linux'
+        run: |
+          npx playwright install --with-deps chromium
+          npx playwright test
+      - run: cargo test --locked --manifest-path src-tauri/Cargo.toml
+      - run: npm run desktop:build -- --bundles ${{ matrix.bundle }}
+      - name: Archive macOS app
+        if: runner.os == 'macOS'
+        run: ditto -c -k --sequesterRsrc --keepParent src-tauri/target/release/bundle/macos/JMeca.app JMeca-macOS.zip
+      - uses: actions/upload-artifact@v4
+        if: runner.os == 'macOS'
+        with:
+          name: JMeca-${{ matrix.artifact }}
+          path: JMeca-macOS.zip
+      - uses: actions/upload-artifact@v4
+        if: runner.os == 'Windows'
+        with:
+          name: JMeca-${{ matrix.artifact }}
+          path: src-tauri/target/release/bundle/nsis/*.exe
+      - uses: actions/upload-artifact@v4
+        if: runner.os == 'Linux'
+        with:
+          name: JMeca-${{ matrix.artifact }}
+          path: src-tauri/target/release/bundle/deb/*.deb
