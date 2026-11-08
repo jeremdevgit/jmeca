@@ -9,13 +9,15 @@
 
 Application de bureau Windows / macOS / Linux, construite en Rust avec Tauri 2 et une interface TypeScript. Elle utilise le moteur web natif du système et n’embarque pas Chromium. Cette version est publiée pour permettre sa validation fonctionnelle.
 
+👉 **[Télécharger la préversion Windows, macOS ou Linux](https://github.com/jeremdevgit/jmeca/releases/tag/v0.1.1-beta.1)**. Il s’agit de premières compilations ; seule la version macOS a été lancée localement. L’application macOS n’est pas notarisée par Apple.
+
 ## Essayer
 
 Sur le Mac de développement, ouvrir l’application `JMeca.app` livrée séparément et choisir **Explorer la démonstration**. Aucune donnée personnelle n’est nécessaire ; les changements de démonstration ne sont pas sauvegardés.
 
 Pour un garage personnel, créer un mot de passe d’au moins 12 caractères. Il ne peut pas être récupéré. Exporter une sauvegarde chiffrée sur un autre support après les premiers essais.
 
-L’application Mac fournie est compilée pour Apple Silicon, avec signature locale ad hoc, sans notarisation Apple. Une distribution publique demandera une identité de signature / notarisation. Windows, Linux et Mac Intel doivent être compilés et validés sur leur système cible ; aucun exécutable correspondant n’est présenté comme testé ici.
+L’application Mac fournie est compilée pour Apple Silicon, avec signature locale ad hoc, sans notarisation Apple. Les compilations Windows, Linux et Mac Intel ont réussi en CI, sans essai interactif sur leurs systèmes cibles. Une diffusion Mac sans avertissement système demanderait une identité de signature et une notarisation Apple.
 
 ## Aperçu en images
 
@@ -37,6 +39,7 @@ Ces captures utilisent des véhicules fictifs et, pour les stations, des prix d�
 | Tests fonctionnels de base | 11 réussis |
 | Parcours navigateur, régression de sécurité et 8 langues | 16 réussis |
 | Tests Rust | 2 réussis |
+| Format Rust et avertissements Clippy | Réussis en local ; imposés en CI |
 | Avis de vulnérabilités JavaScript et Rust | Aucune vulnérabilité connue signalée à la vérification |
 
 Le [workflow GitHub](.github/workflows/build.yml) relance les audits de dépendances, les tests et les compilations Windows/macOS/Linux. Son badge reflète le résultat distant. Deux problèmes du code ont été détectés et corrigés avant publication, avec tests de régression. L’analyse Rust mentionne aussi des avis informatifs sur des dépendances indirectes.
@@ -115,3 +118,7 @@ La sauvegarde automatique `.bak` peut garder l’ancien mot de passe après un c
 ## GitHub et versions de bureau
 
 Le code source est publié sous GPL-3.0-or-later. Le workflow `.github/workflows/build.yml` se lance manuellement et compile les versions Windows, macOS et Linux. Les artefacts doivent être essayés sur chaque plateforme avant une diffusion comme versions recommandées. La signature Apple de développement n’est pas notarisée. Voir `THIRD_PARTY.md` pour les sources et licences des ressources tierces.
+
+## Mes logiciels
+
+[Profil public : jeremdevgit](https://github.com/jeremdevgit) · [Carnet Rust](https://github.com/jeremdevgit/carnet-rust) · [Suite libre](https://github.com/jeremdevgit/suite-libre) · [Batailles de France](https://github.com/jeremdevgit/batailles-de-france) · [Pomme](https://github.com/jeremdevgit/pomme) · [Ludothèque](https://github.com/jeremdevgit/ludotheque) · [rJb](https://github.com/jeremdevgit/rjb) · [Boîte à outils](https://github.com/jeremdevgit/boite-a-outils).

@@ -54,12 +54,14 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: npm test
+      - run: cargo fmt --all --manifest-path src-tauri/Cargo.toml -- --check
       - name: Browser tests
         if: runner.os == 'Linux'
         run: |
           npx playwright install --with-deps chromium
           npx playwright test
       - run: cargo test --locked --manifest-path src-tauri/Cargo.toml
+      - run: cargo clippy --locked --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings
       - run: npm run desktop:build -- --bundles ${{ matrix.bundle }}
       - name: Archive macOS app
         if: runner.os == 'macOS'
