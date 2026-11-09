@@ -43,6 +43,10 @@ export function t(text: string): string {
   if (current === 'fr') return text;
   const exact = dictionaries[current][text];
   if (exact) return exact;
+  const catalogueSource = text.match(/^(Sources : EPA .* Données historiques récupérées le) (.+)\.$/);
+  if (catalogueSource) return `${dictionaries[current][catalogueSource[1]] ?? catalogueSource[1]} ${catalogueSource[2]}.`;
+  const paletteColor = text.match(/^Coloris (Rouge|Noir|Blanc|Gris|Bleu|Vert|Argent|Jaune)$/);
+  if (paletteColor) return `${dictionaries[current]['Coloris rapides'] ?? 'Color'}: ${dictionaries[current][paletteColor[1]] ?? paletteColor[1]}`;
   const remaining = text.match(/^([\d\s.,\u00a0]+) km restants$/);
   if (remaining) return `${remaining[1]} ${dictionaries[current]['km restants'] || 'km'}`;
   const exceeded = text.match(/^([\d\s.,\u00a0]+) km dépassés$/);

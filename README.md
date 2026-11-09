@@ -11,19 +11,20 @@
 
 | | Windows 10/11 | macOS 12+ | Linux |
 |---|---|---|---|
-| Installer | `JMeca-Setup-Windows-x64.exe` | `JMeca-0.1.1-macOS-Universal.pkg` or `.dmg` | `JMeca-0.1.1-Linux-amd64.deb` |
+| Installer | `JMeca-Setup-Windows-x64.exe` | `JMeca-0.2.0-macOS-Universal.pkg` or `.dmg` | `JMeca-0.2.0-Linux-amd64.deb` |
 | Architecture | x64 | Apple Silicon and Intel | x64 Debian/Ubuntu |
 | Web engine | WebView2 | WebKit | WebKitGTK 4.1 |
 
-👉 **[Download the Windows, macOS and Linux preview](https://github.com/jeremdevgit/jmeca/releases/tag/v0.1.1-beta.2)**.
+👉 **[Download the Windows, macOS and Linux preview](https://github.com/jeremdevgit/jmeca/releases/tag/v0.2.0-beta.1)**.
 
 ## Features
 
 - Multiple vehicles, client or household folders, fleet search and active vehicle switching.
+- Fleet-wide maintenance queue and confirmed CSV report export for a customer folder.
 - Parts, custom service intervals by date or mileage, upcoming and overdue reminders.
 - Digital service log with invoices and photos, vehicle registration document and technical notes.
 - Fuel consumption and expense tracking, and French fuel station prices from official open data.
-- Offline ADEME catalog of 3,604 vehicle versions and engines, plus nine generic 3D vehicle silhouettes and optional GLB import.
+- Offline catalog of 53,596 versions from 1980–2026 (EPA, ADEME and manufacturer archives), year filter, detailed Audi A3 8P engine/body variants, a customizable stylized A3 8P model in several colors, plus nine generic 3D silhouettes and optional GLB import.
 - Password protected local vault, encrypted backups, restore and automatic lock after inactivity.
 
 ## Screenshots
@@ -35,6 +36,7 @@ Demo screenshots use fictional vehicles and illustrative fuel prices. They show 
 <p><img src="captures/en/03-fleet-folders.png" alt="Client folders and vehicle fleet" width="49%"> <img src="captures/en/04-parts-reminders.png" alt="Parts and maintenance reminders" width="49%"></p>
 <p><img src="captures/en/05-service-log.png" alt="Digital service log" width="49%"> <img src="captures/en/06-fuel-consumption.png" alt="Fuel consumption" width="49%"></p>
 <p><img src="captures/en/07-fuel-stations-demo.png" alt="Illustrative station search" width="49%"> <img src="captures/en/08-vehicle-catalog.png" alt="Vehicle catalog" width="49%"></p>
+<p><img src="captures/fr/19-a3-8p-rouge.png" alt="Audi A3 8P stylized model in red" width="49%"> <img src="captures/fr/20-options-a3-8p.png" alt="A3 8P body, grille, mirror and color options" width="49%"></p>
 
 [All screenshots, including registration, attachments, 3D, settings and backups](captures/fr/)
 
@@ -43,8 +45,8 @@ Demo screenshots use fictional vehicles and illustrative fuel prices. They show 
 | Check | Result |
 |---|---|
 | TypeScript production build | Passed locally |
-| Core unit tests | 11 passed |
-| Browser flows, security regression and 8 languages | 16 passed |
+| Core unit tests | 13 passed |
+| Browser flows, security regression and 8 languages | 17 passed |
 | Rust unit tests | 2 passed |
 | Rust formatting and Clippy warnings | Passed locally; enforced in CI |
 | CodeQL | Actions, TypeScript, Python and Rust on GitHub |
@@ -55,7 +57,7 @@ The [CI workflow](.github/workflows/build.yml) repeats dependency audits, tests 
 
 ## Windows installation
 
-Download `JMeca-Setup-Windows-x64.exe` from the [release](https://github.com/jeremdevgit/jmeca/releases/tag/v0.1.1-beta.2) and run the installer. It creates application shortcuts and an uninstall entry. WebView2 is required. The executable is not signed with a commercial certificate, so Windows SmartScreen may ask for confirmation. Compare its SHA-256 with `SHA256SUMS.txt` using `Get-FileHash`.
+Download `JMeca-Setup-Windows-x64.exe` from the [release](https://github.com/jeremdevgit/jmeca/releases/tag/v0.2.0-beta.1) and run the installer. It creates application shortcuts and an uninstall entry. WebView2 is required. The executable is not signed with a commercial certificate, so Windows SmartScreen may ask for confirmation. Compare its SHA-256 with `SHA256SUMS.txt` using `Get-FileHash`.
 
 ## macOS installation
 
@@ -66,7 +68,7 @@ The macOS installers contain a universal Apple Silicon and Intel app. The app ha
 
 ## Linux installation
 
-Download `JMeca-0.1.1-Linux-amd64.deb` on a compatible Debian or Ubuntu x64 desktop and install it with your package manager. WebKitGTK 4.1 and the package dependencies are required. Compare its SHA-256 with `SHA256SUMS.txt` using `sha256sum`.
+Download `JMeca-0.2.0-Linux-amd64.deb` on a compatible Debian or Ubuntu x64 desktop and install it with your package manager. WebKitGTK 4.1 and the package dependencies are required. Compare its SHA-256 with `SHA256SUMS.txt` using `sha256sum`.
 
 The Windows and Linux installers pass automated builds and tests but have not been launched interactively on their target systems. The macOS app has been launched locally. This remains a preview for functional review.
 
@@ -80,7 +82,9 @@ Run `npm run build`, `npm test`, `npx playwright test` and `cargo test --locked 
 
 JMeca encrypts vault contents and attachments at rest with AES-256-GCM. The key is derived from your password with PBKDF2-SHA-256 (600,000 iterations). The password is not stored. Encryption cannot protect an unlocked vault on a compromised computer. An exported attachment leaves the encrypted vault. Previous backups can still contain deleted data or an old password.
 
-Service intervals, compatible part references, tire dimensions and bulb types must be checked against the manual for the exact vehicle. The ADEME catalog is not a certified maintenance database. The station search uses French official open data, not an Essence&Co API. Reminders appear while JMeca is open; there are no background notifications or multi-user accounts. A full vault snapshot is rewritten on each save, so this version is suited to a personal garage or a small local workshop, not a large fleet.
+Fleet-wide maintenance queue and CSV report export by customer folder. Exported CSV files are unencrypted and require confirmation.
+
+Service intervals, compatible part references, tire dimensions and bulb types must be checked against the manual for the exact vehicle. The EPA, ADEME and manufacturer catalogs are not certified maintenance or parts-fitment databases. The station search uses French official open data, not an Essence&Co API. Reminders appear while JMeca is open; there are no background notifications or multi-user accounts. A full vault snapshot is rewritten on each save, so this version is suited to a personal garage or a small local workshop, not a large fleet.
 
 See [the French documentation](README.fr.md) for detailed behavior and [third-party sources](THIRD_PARTY.md) for data and licenses. Original code is licensed under GPL-3.0-or-later; third-party materials retain their own licenses.
 

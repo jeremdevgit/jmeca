@@ -2,6 +2,7 @@ import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {addMonths,due,fuelStats,demoVault,emptyVault,vaultSchema,type Fill} from '../src/domain';
 import {encryptVault,decryptVault,deriveKey,parseEnvelope} from '../src/crypto';
+import {fleetQueue,fleetCsv} from '../src/report';
 const p=demoVault().parts[0];
 test('calendar: leap years and end-of-month clamp',()=>{assert.equal(addMonths('2024-01-31',1),'2024-02-29');assert.equal(addMonths('2024-02-29',12),'2025-02-28');assert.equal(addMonths('2025-08-31',6),'2026-02-28');});
 test('reminder triggers at first date or distance reached',()=>{const part={...p,lastDate:'2025-01-01',lastKm:10000,intervalKm:15000,intervalMonths:12};assert.equal(due(part,25000,'2025-03-01').status,'overdue');assert.equal(due(part,11000,'2026-01-01').status,'overdue');assert.equal(due(part,24500,'2025-03-01').status,'soon');assert.equal(due(part,11000,'2025-03-01').status,'ok');});
@@ -23,3 +24,20 @@ test('GLB: tiny file cannot declare unbounded decoded geometry',async()=>{
 });
 
 test('older vaults without folders migrate; unknown folders and duplicate folders rejected',()=>{const old:any=demoVault();delete old.folders;delete old.vehicles[0].folderId;const parsed=vaultSchema.parse(old);assert.deepEqual(parsed.folders,[]);assert.equal(parsed.vehicles[0].folderId,'');const missing=demoVault();missing.vehicles[0].folderId='other';assert.equal(vaultSchema.safeParse(missing).success,false);const duplicate=demoVault();duplicate.folders.push({...duplicate.folders[0]});assert.equal(vaultSchema.safeParse(duplicate).success,false);});
+
+test('historic catalogue spans 1980–2026 and Audi 8P body and engine families',async()=>{
+ const {readFile}=await import('node:fs/promises');const data=JSON.parse(await readFile(new URL('../public/catalogue-history.json',import.meta.url),'utf8'));
+ assert.equal(data.count,data.vehicles.length);assert.ok(data.count>49000);
+ assert.equal(Math.min(...data.vehicles.map((v:{year:number})=>v.year)),1980);
+ assert.equal(Math.max(...data.vehicles.map((v:{year:number})=>v.year)),2026);
+ assert.equal(new Set(data.vehicles.map((v:{id:string})=>v.id)).size,data.count);
+ const a3=data.vehicles.filter((v:{id:string})=>v.id.startsWith('audi-8p:'));
+ for(const body of ['A3 3 portes','A3 Sportback','A3 Cabriolet','S3 3 portes','S3 Sportback','RS3 Sportback'])assert.ok(a3.some((v:{model:string})=>v.model.startsWith(body)));
+ for(const engine of ['1.2 TFSI','1.4 TFSI','1.6 TDI','1.8 TFSI','2.0 TFSI','2.0 TDI','3.2 quattro','2.5 TFSI'])assert.ok(a3.some((v:{version:string})=>v.version.includes(engine)));
+});
+
+test('fleet report sorts urgent work and prevents CSV formula execution',()=>{
+ const v=demoVault();v.vehicles[0].registration='=HYPERLINK("https://bad.example")';
+ const queue=fleetQueue(v,v.vehicles,'2026-11-09');assert.ok(queue.length>0);assert.equal(queue[0].due.status,'overdue');
+ const csv=fleetCsv(v,v.vehicles,'2026-11-09');assert.ok(csv.includes("'=HYPERLINK"));assert.ok(csv.includes('Vidange & filtre à huile'));
+});

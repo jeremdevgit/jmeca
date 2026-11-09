@@ -1,6 +1,6 @@
 <p align="center"><img src="captures/icone.png" width="96" alt="Icône JMeca"></p>
 
-# JMeca 0.1.1 — garage personnel chiffré
+# JMeca 0.2.0 — garage personnel chiffré
 
 [![Contrôles et compilations](https://github.com/jeremdevgit/jmeca/actions/workflows/build.yml/badge.svg)](https://github.com/jeremdevgit/jmeca/actions/workflows/build.yml) [![CodeQL](https://github.com/jeremdevgit/jmeca/actions/workflows/codeql.yml/badge.svg)](https://github.com/jeremdevgit/jmeca/actions/workflows/codeql.yml)
 
@@ -11,11 +11,11 @@
 
 | | Windows 10/11 | macOS 12+ | Linux |
 |---|---|---|---|
-| Installation | `JMeca-Setup-Windows-x64.exe` | `JMeca-0.1.1-macOS-Universal.pkg` ou `.dmg` | `JMeca-0.1.1-Linux-amd64.deb` |
+| Installation | `JMeca-Setup-Windows-x64.exe` | `JMeca-0.2.0-macOS-Universal.pkg` ou `.dmg` | `JMeca-0.2.0-Linux-amd64.deb` |
 | Architecture | x64 | Apple Silicon et Intel | x64 Debian/Ubuntu |
 | Moteur web | WebView2 | WebKit | WebKitGTK 4.1 |
 
-👉 **[Télécharger la préversion Windows, macOS ou Linux](https://github.com/jeremdevgit/jmeca/releases/tag/v0.1.1-beta.2)**.
+👉 **[Télécharger la préversion Windows, macOS ou Linux](https://github.com/jeremdevgit/jmeca/releases/tag/v0.2.0-beta.1)**.
 
 ## Essayer
 
@@ -34,12 +34,13 @@ Ces captures utilisent des véhicules fictifs et, pour les stations, des prix d�
 <p><img src="captures/fr/03-parc-automobile.png" alt="Dossiers et parc automobile" width="49%"> <img src="captures/fr/09-pieces-et-echeances.png" alt="Pièces et échéances" width="49%"></p>
 <p><img src="captures/fr/11-carnet-entretien-et-factures.png" alt="Carnet d’entretien" width="49%"> <img src="captures/fr/13-consommation-et-budget.png" alt="Consommation" width="49%"></p>
 <p><img src="captures/fr/15-recherche-stations-prix-illustratifs.png" alt="Recherche de stations avec prix fictifs" width="49%"> <img src="captures/fr/16-catalogue-vehicules-et-moteurs.png" alt="Catalogue de véhicules" width="49%"></p>
+<p><img src="captures/fr/19-a3-8p-rouge.png" alt="A3 8P stylisée rouge" width="49%"> <img src="captures/fr/20-options-a3-8p.png" alt="Choix de carrosserie, de calandre, de rétroviseurs et de coloris" width="49%"></p>
 
-[Les 18 captures de toutes les fonctions](captures/fr/)
+[Les 21 captures des fonctions](captures/fr/)
 
 ## Installer sur Windows
 
-Télécharger `JMeca-Setup-Windows-x64.exe` depuis la [version publiée](https://github.com/jeremdevgit/jmeca/releases/tag/v0.1.1-beta.2), puis lancer l’installateur. Il crée les raccourcis et l’entrée de désinstallation. WebView2 est requis. L’exécutable n’a pas de certificat commercial ; SmartScreen peut demander une confirmation. Comparer son SHA-256 à `SHA256SUMS.txt` avec `Get-FileHash`.
+Télécharger `JMeca-Setup-Windows-x64.exe` depuis la [version publiée](https://github.com/jeremdevgit/jmeca/releases/tag/v0.2.0-beta.1), puis lancer l’installateur. Il crée les raccourcis et l’entrée de désinstallation. WebView2 est requis. L’exécutable n’a pas de certificat commercial ; SmartScreen peut demander une confirmation. Comparer son SHA-256 à `SHA256SUMS.txt` avec `Get-FileHash`.
 
 ## Installer sur macOS
 
@@ -50,7 +51,7 @@ L’app macOS est universelle Apple Silicon et Intel. Elle porte une signature d
 
 ## Installer sur Linux
 
-Télécharger `JMeca-0.1.1-Linux-amd64.deb` sur un bureau Debian ou Ubuntu x64 compatible et l’installer avec le gestionnaire de paquets. WebKitGTK 4.1 et les dépendances du paquet sont requis. Vérifier le SHA-256 avec `sha256sum`.
+Télécharger `JMeca-0.2.0-Linux-amd64.deb` sur un bureau Debian ou Ubuntu x64 compatible et l’installer avec le gestionnaire de paquets. WebKitGTK 4.1 et les dépendances du paquet sont requis. Vérifier le SHA-256 avec `sha256sum`.
 
 ## Contrôles qualité
 
@@ -71,8 +72,8 @@ La chaîne Linux WebKitGTK/GTK3 contient un avis connu sur un itérateur de `gli
 
 ## Fonctions présentes
 
-- Plusieurs véhicules et dossiers par client, foyer ou parc, avec coordonnées et notes chiffrées, recherche dans le parc par immatriculation, VIN, titulaire, marque et modèle, résumé des échéances et coûts par dossier. Supprimer un dossier conserve les voitures et leur historique dans « Sans dossier ».
-- Sélection du véhicule actif, saisie manuelle ou recherche dans **3 604 versions ADEME** embarquées. Recherche par marque, modèle, version commerciale, énergie ou cylindrée ; informations de puissance et boîte quand disponibles.
+- Plusieurs véhicules et dossiers par client, foyer ou parc, avec coordonnées et notes chiffrées, recherche dans le parc par immatriculation, VIN, titulaire, marque et modèle, résumé des échéances et coûts par dossier, liste des rappels du parc et export CSV confirmé. Supprimer un dossier conserve les voitures et leur historique dans « Sans dossier ».
+- Sélection du véhicule actif, saisie manuelle ou recherche dans **53 596 versions** embarquées de 1980 à 2026 (EPA, ADEME, archives Audi et Volkswagen). Recherche par marque, modèle, moteur, année, énergie ou cylindrée ; informations de boîte quand disponibles. Les millésimes EPA correspondent au marché américain.
 - Kilométrage manuel croissant, également mis à jour par les interventions et les pleins.
 - Pièces, références et rappels personnels, date et/ou kilométrage ; le premier terme atteint déclenche l’échéance. Préavis réglable. Gestion des fins de mois et années bissextiles.
 - Modèles de noms d’opérations, sans périodicités constructeur inventées. Source de chaque préconisation à renseigner.
@@ -82,14 +83,14 @@ La chaîne Linux WebKitGTK/GTK3 contient un avis connu sur un itérateur de `gli
 - Suivi de carburant et calcul pondéré entre pleins complets, avec intégration des pleins partiels intermédiaires. Le premier plein complet est un point de départ, son volume est exclu du calcul de consommation.
 - Historique des coûts d’entretien et du carburant.
 - Stations françaises via le service officiel du ministère : recherche par code postal ou rayon de 20 km, carburant, prix, mise à jour, rupture signalée, services et lien cartographique. Maximum de 30 stations, triées par prix. La disponibilité dépend du service public et du réseau.
-- Neuf silhouettes Kenney CC0 téléchargées et autonomes, rotation / zoom 3D, import d’un GLB 2.0 autonome de 10 Mo maximum, conservé chiffré. Pas de téléchargement silencieux de modèles à l’ouverture.
+- Neuf silhouettes Kenney CC0 autonomes et une illustration 3D originale de l’Audi A3 8P : carrosserie 3 portes, Sportback ou Cabriolet, plusieurs coloris, calandre classique ou nid d’abeilles, rétroviseurs couleur carrosserie ou style S line. Rotation / zoom 3D et import d’un GLB 2.0 autonome de 10 Mo maximum, conservé chiffré. Pas de téléchargement silencieux de modèles à l’ouverture.
 - Coffre chiffré, sauvegarde / restauration avec justificatifs inclus, changement de mot de passe, verrouillage manuel et automatique après dix minutes d’inactivité.
 - Enregistrement atomique sur ordinateur, copie locale `.bak` du dernier état précédent, validation des sauvegardes avant restauration. En aperçu navigateur : IndexedDB chiffré et protection contre l’écriture concurrente entre onglets.
 
 ## Limites à connaître pour valider cette version
 
-- Les périodicités, références de pièces compatibles, dimensions de pneus et types d’ampoules ne proviennent pas d’une base constructeur certifiée. Il faut les confirmer dans la notice correspondant au moteur, à la finition, à l’année et éventuellement au VIN. Le catalogue ADEME ne les fournit pas.
-- Les modèles 3D embarqués sont des **silhouettes génériques**, pas des répliques de marques. Le modèle précis d’un véhicule nécessite un fichier dont l’utilisateur détient les droits. Le catalogue ADEME représente une sélection de véhicules commercialisés, pas tous les modèles historiques.
+- Les périodicités, références de pièces compatibles, dimensions de pneus et types d’ampoules ne proviennent pas d’une base constructeur certifiée. Il faut les confirmer dans la notice correspondant au moteur, à la finition, à l’année et éventuellement au VIN. Les catalogues EPA et ADEME ne les fournissent pas.
+- L’A3 8P 3D est une **illustration stylisée** créée pour JMeca, sans géométrie constructeur ni validation pour les pièces ; les autres modèles sont des silhouettes génériques. Un modèle exact nécessite un fichier dont l’utilisateur détient les droits. Le catalogue historique reste incomplet selon les marchés et les finitions.
 - Pas d’API publique documentée Essence&Co identifiée : utilisation de l’open data officiel français, sans connexion à un compte Essence&Co. Pas de reproduction intégrale de ses fonctionnalités (itinéraires, contribution communautaire, offres commerciales, etc.).
 - Les rappels sont affichés dans JMeca ouvert. Aucun service en arrière-plan, notification système ou rappel lorsque l’application est fermée.
 - Chaque pièce jointe est limitée à 10 Mo ; environ 40 Mo cumulés dans le coffre. Le coffre est un instantané chiffré complet, réécrit à l’enregistrement : adapté à un garage personnel, pas à une flotte importante.
@@ -128,7 +129,7 @@ npm run desktop:build
 
 Résultats des installateurs dans `src-tauri/target/release/bundle/`. Tauri compile sur le système hôte. Linux requiert notamment WebKitGTK 4.1 ; Windows WebView2 et les outils C++ ; macOS les outils Xcode.
 
-Les versions sont verrouillées par les deux lockfiles. Le script `scripts/fetch-data.py` permet de rafraîchir les ressources publiques ; il requiert Python 3.10+ et Internet. Les données sont déjà embarquées, donc le script n’est pas nécessaire à la compilation. Revoir les licences et les changements du catalogue avant toute actualisation.
+Les versions sont verrouillées par les deux lockfiles. Les scripts `scripts/fetch-data.py` et `scripts/build-historic-catalogue.py` permettent de rafraîchir les ressources publiques ; ils requièrent Python 3.10+ et Internet. Les données sont déjà embarquées, donc ces scripts ne sont pas nécessaires à la compilation. Revoir les licences et les changements du catalogue avant toute actualisation.
 
 ## Stockage et sécurité
 

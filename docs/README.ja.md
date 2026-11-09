@@ -4,7 +4,7 @@
 
 Windows、macOS、Linux 用のデスクトップ車両メンテナンス トラッカー。
 
-👉 **[Windows・macOS・Linux 用インストーラーをダウンロード](https://github.com/jeremdevgit/jmeca/releases/tag/v0.1.1-beta.2)**。Windows は `.exe`、Apple Silicon と Intel に対応する macOS は `.pkg` または `.dmg`、Debian/Ubuntu は `.deb` です。SHA-256 の値は `SHA256SUMS.txt` に記載しています。
+👉 **[Windows・macOS・Linux 用インストーラーをダウンロード](https://github.com/jeremdevgit/jmeca/releases/tag/v0.2.0-beta.1)**。Windows は `.exe`、Apple Silicon と Intel に対応する macOS は `.pkg` または `.dmg`、Debian/Ubuntu は `.deb` です。SHA-256 の値は `SHA256SUMS.txt` に記載しています。
 
 インターフェイスは、最初の起動時にシステム言語に従います。アプリ内で変更できます。
 
@@ -14,7 +14,7 @@ Windows、macOS、Linux 用のデスクトップ車両メンテナンス トラ�
 - 日付と走行距離ごとに部品とカスタムメンテナンスのリマインダーを追跡します。
 - サービス記録、請求書、写真、登録書類を暗号化された保管庫に保管します。
 - 燃料消費量と経費を記録します。公式オープンデータを使用してフランスのガソリンスタンドを検索します。
-- 3,604 の車両バージョンと一般的な 3D 車のシルエットのオフライン カタログからお選びください。
+- 53,596 の車両バージョン（1980〜2026年）、カスタマイズ可能な A3 8P 3D モデルと汎用シルエットのオフライン カタログからお選びください。
 
 ## デモを試してみる
 

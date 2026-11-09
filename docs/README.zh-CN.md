@@ -4,7 +4,7 @@
 
 适用于 Windows、macOS 和 Linux 的桌面车辆维护跟踪器。
 
-👉 **[下载 Windows、macOS 和 Linux 安装包](https://github.com/jeremdevgit/jmeca/releases/tag/v0.1.1-beta.2)**。Windows：`.exe`；通用 macOS：`.pkg` 或 `.dmg`；Debian/Ubuntu：`.deb`。SHA-256 校验值见 `SHA256SUMS.txt`。
+👉 **[下载 Windows、macOS 和 Linux 安装包](https://github.com/jeremdevgit/jmeca/releases/tag/v0.2.0-beta.1)**。Windows：`.exe`；通用 macOS：`.pkg` 或 `.dmg`；Debian/Ubuntu：`.deb`。SHA-256 校验值见 `SHA256SUMS.txt`。
 
 首次启动时，界面将遵循您的系统语言。您可以在应用程序中更改它。
 
@@ -14,7 +14,7 @@
 - 按日期和里程跟踪零件和自定义维护提醒。
 - 将服务记录、发票、照片和注册文件保存在加密的保管库中。
 - 记录油耗和费用。使用官方开放数据搜索法国加油站。
-- 从包含 3,604 个车辆版本和通用 3D 汽车轮廓的离线目录中进行选择。
+- 从包含 53,596 个车型版本（1980–2026）、可定制的 A3 8P 3D 模型和通用 3D 轮廓的离线目录中进行选择。
 
 ## 尝试演示
 

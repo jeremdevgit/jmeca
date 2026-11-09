@@ -4,7 +4,7 @@
 
 Desktop-Fahrzeugwartungs-Tracker für Windows, macOS und Linux.
 
-👉 **[Installationsdateien für Windows, macOS und Linux herunterladen](https://github.com/jeremdevgit/jmeca/releases/tag/v0.1.1-beta.2)**. Windows: `.exe`; macOS: universelles `.pkg` oder `.dmg`; Debian/Ubuntu: `.deb`. Die SHA-256-Prüfsummen stehen in `SHA256SUMS.txt`.
+👉 **[Installationsdateien für Windows, macOS und Linux herunterladen](https://github.com/jeremdevgit/jmeca/releases/tag/v0.2.0-beta.1)**. Windows: `.exe`; macOS: universelles `.pkg` oder `.dmg`; Debian/Ubuntu: `.deb`. Die SHA-256-Prüfsummen stehen in `SHA256SUMS.txt`.
 
 Die Benutzeroberfläche folgt beim ersten Start Ihrer Systemsprache. Sie können es in der App ändern.
 
@@ -14,7 +14,7 @@ Die Benutzeroberfläche folgt beim ersten Start Ihrer Systemsprache. Sie können
 - Verfolgen Sie Ersatzteile und individuelle Wartungserinnerungen nach Datum und Kilometerstand.
 - Bewahren Sie Serviceaufzeichnungen, Rechnungen, Fotos und Registrierungsdokumente in einem verschlüsselten Tresor auf.
 - Erfassen Sie Kraftstoffverbrauch und -kosten. Durchsuchen Sie französische Tankstellen mithilfe offizieller offener Daten.
-- Wählen Sie aus einem Offline-Katalog mit 3.604 Fahrzeugversionen und generischen 3D-Autosilhouetten.
+- Wählen Sie aus einem Offline-Katalog mit 53.596 Fahrzeugversionen (1980–2026), einem anpassbaren A3-8P-3D-Modell und generischen Silhouetten.
 
 ## Probieren Sie die Demo aus
 

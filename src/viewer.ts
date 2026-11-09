@@ -4,6 +4,7 @@ import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 import {fromB64} from './crypto';
 import type {Vehicle} from './domain';
 import {validateGLB} from './glb';
+import {createA3Model} from './a3model';
 export function mountViewer(host:HTMLElement,vehicle:Vehicle):()=>void{
  let renderer:THREE.WebGLRenderer;
  try{renderer=new THREE.WebGLRenderer({antialias:true,alpha:true,powerPreference:'low-power'});}catch{host.innerHTML='<div class="viewer-fallback">Aperçu 3D indisponible sur cet appareil.</div>';return ()=>{};}
@@ -17,9 +18,10 @@ export function mountViewer(host:HTMLElement,vehicle:Vehicle):()=>void{
  const resize=new ResizeObserver(()=>{const w=host.clientWidth,h=host.clientHeight;if(!w||!h)return;renderer.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix();render();});resize.observe(host);
  const manager=new THREE.LoadingManager();manager.setURLModifier(url=>{if(!url.startsWith('/models/')&&!url.startsWith('data:')&&!url.startsWith('blob:'))throw Error('Ressource externe bloquée.');return url;});
  const loader=new GLTFLoader(manager);
- const success=(g:{scene:THREE.Group})=>{if(disposed){disposeTree(g.scene);return;}current=g.scene;const box=new THREE.Box3().setFromObject(current);const size=box.getSize(new THREE.Vector3()),center=box.getCenter(new THREE.Vector3());const scale=3.5/Math.max(size.x,size.y,size.z);current.position.sub(center);const group=new THREE.Group();group.add(current);group.scale.setScalar(scale);group.rotation.y=-.35;scene.add(group);render();};
+ const success=(g:{scene:THREE.Group})=>{if(disposed){disposeTree(g.scene);return;}current=g.scene;const box=new THREE.Box3().setFromObject(current);const size=box.getSize(new THREE.Vector3()),center=box.getCenter(new THREE.Vector3());const scale=(vehicle.model3d==='a3-8p'&&!vehicle.customModel?4.2:3.5)/Math.max(size.x,size.y,size.z);current.position.sub(center);const group=new THREE.Group();group.add(current);group.scale.setScalar(scale);group.rotation.y=-.35;scene.add(group);render();};
  const fail=()=>{if(!disposed){const el=document.createElement('small');el.className='viewer-error';el.textContent='Modèle 3D indisponible. Choisissez une autre silhouette.';host.append(el);}};
  if(vehicle.customModel){try{const bytes=fromB64(vehicle.customModel.data);validateGLB(bytes);loader.parse(bytes.buffer as ArrayBuffer,'',success,fail);}catch{fail();}}
+ else if(vehicle.model3d==='a3-8p')success({scene:createA3Model(vehicle)});
  else {const allowed=['sedan','hatchback-sports','suv','suv-luxury','truck','van','sedan-sports','race','taxi'];const id=allowed.includes(vehicle.model3d)?vehicle.model3d:'sedan';loader.load('/models/'+id+'.glb',success,undefined,fail);}
  return ()=>{disposed=true;resize.disconnect();controls.dispose();disposeTree(scene);renderer.dispose();renderer.forceContextLoss();renderer.domElement.remove();};
 }

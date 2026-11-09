@@ -4,7 +4,7 @@
 
 Tracker desktop per la manutenzione dei veicoli per Windows, macOS e Linux.
 
-👉 **[Scarica gli installer per Windows, macOS e Linux](https://github.com/jeremdevgit/jmeca/releases/tag/v0.1.1-beta.2)**. Windows: `.exe`; macOS universale: `.pkg` o `.dmg`; Debian/Ubuntu: `.deb`. Le impronte SHA-256 sono in `SHA256SUMS.txt`.
+👉 **[Scarica gli installer per Windows, macOS e Linux](https://github.com/jeremdevgit/jmeca/releases/tag/v0.2.0-beta.1)**. Windows: `.exe`; macOS universale: `.pkg` o `.dmg`; Debian/Ubuntu: `.deb`. Le impronte SHA-256 sono in `SHA256SUMS.txt`.
 
 L'interfaccia segue la lingua del sistema al primo avvio. Puoi modificarlo nell'app.
 
@@ -14,7 +14,7 @@ L'interfaccia segue la lingua del sistema al primo avvio. Puoi modificarlo nell'
 - Tieni traccia delle parti e dei promemoria di manutenzione personalizzata per data e chilometraggio.
 - Conserva i registri di servizio, le fatture, le foto e i documenti di registrazione in un deposito crittografato.
 - Registra il consumo di carburante e le spese. Cerca le stazioni di rifornimento francesi utilizzando i dati aperti ufficiali.
-- Scegli da un catalogo offline di 3.604 versioni di veicoli e sagome generiche di auto 3D.
+- Scegli da un catalogo offline di 53.596 versioni (1980–2026), un A3 8P 3D personalizzabile e sagome generiche.
 
 ## Prova la demo
 

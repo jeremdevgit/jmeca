@@ -4,7 +4,7 @@
 
 Rastreador de mantenimiento de vehículos de escritorio para Windows, macOS y Linux.
 
-👉 **[Descargar instaladores para Windows, macOS y Linux](https://github.com/jeremdevgit/jmeca/releases/tag/v0.1.1-beta.2)**. Windows: `.exe`; macOS universal: `.pkg` o `.dmg`; Debian/Ubuntu: `.deb`. Las sumas SHA-256 están en `SHA256SUMS.txt`.
+👉 **[Descargar instaladores para Windows, macOS y Linux](https://github.com/jeremdevgit/jmeca/releases/tag/v0.2.0-beta.1)**. Windows: `.exe`; macOS universal: `.pkg` o `.dmg`; Debian/Ubuntu: `.deb`. Las sumas SHA-256 están en `SHA256SUMS.txt`.
 
 La interfaz sigue el idioma de su sistema en el primer inicio. Puedes cambiarlo en la aplicación.
 
@@ -14,7 +14,7 @@ La interfaz sigue el idioma de su sistema en el primer inicio. Puedes cambiarlo 
 - Realice un seguimiento de las piezas y los recordatorios de mantenimiento personalizados por fecha y kilometraje.
 - Guarde registros de servicio, facturas, fotografías y documentos de registro en una bóveda cifrada.
 - Registrar consumos y gastos de combustible. Busque estaciones de servicio francesas utilizando datos oficiales abiertos.
-- Elija de un catálogo fuera de línea de 3604 versiones de vehículos y siluetas genéricas de automóviles en 3D.
+- Elija de un catálogo fuera de línea de 53.596 versiones (1980–2026), un A3 8P 3D configurable y siluetas genéricas.
 
 ## Pruebe la demostración
 
