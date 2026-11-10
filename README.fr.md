@@ -156,5 +156,7 @@ Tous libres et gratuits — [github.com/jeremdevgit](https://github.com/jeremdev
 | [Pomme](https://github.com/jeremdevgit/pomme) | Windows | Apple Music et musique locale |
 | [rJb](https://github.com/jeremdevgit/rjb) | Windows | Éclairage RGB |
 | [Ludothèque](https://github.com/jeremdevgit/ludotheque) | macOS | Bibliothèque et lanceur de jeux |
+| [Decklight](https://github.com/jeremdevgit/decklight) | Windows, macOS, Linux | Stream Deck virtuel avec contrôle USB |
+| [lj-hub](https://github.com/jeremdevgit/lj-hub) | Windows, macOS, Linux | Gestionnaire de profils Logitech |
 | [Suite Libre](https://github.com/jeremdevgit/suite-libre) | Navigateur | Six outils sans compte |
 | [Batailles de France](https://github.com/jeremdevgit/batailles-de-france) | Navigateur | Jeu de stratégie en temps réel |
