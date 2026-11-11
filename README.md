@@ -101,18 +101,19 @@ scripts/package_macos.sh macOS disk image and installer package
 docs/                    Six additional documentation languages
 ```
 
-## My software
+## My other software
 
-All free and open source — [github.com/jeremdevgit](https://github.com/jeremdevgit):
+All free, open source and ad-free — [github.com/jeremdevgit](https://github.com/jeremdevgit):
 
 | Software | Platform | In short |
 |---|---|---|
-| [Boîte à outils](https://github.com/jeremdevgit/boite-a-outils) | Windows, macOS | Computer maintenance and file search |
+| [AutoDex](https://github.com/jeremdevgit/autodex) | Windows, macOS, Linux | Car collection game with on-device photo recognition |
+| [Boîte à outils](https://github.com/jeremdevgit/boite-a-outils) | Windows, macOS | Computer maintenance, cleanup and file search |
 | [Carnet de notes](https://github.com/jeremdevgit/carnet-rust) | Windows | Encrypted notebooks and experimental sync |
+| [Decklight](https://github.com/jeremdevgit/decklight) | Windows, macOS, Linux | Virtual Stream Deck with USB control |
+| [LJ Hub](https://github.com/jeremdevgit/lj-hub) | Windows, macOS, Linux | Logitech device profile manager |
 | [Pomme](https://github.com/jeremdevgit/pomme) | Windows | Apple Music and local music player |
 | [rJb](https://github.com/jeremdevgit/rjb) | Windows | RGB lighting control |
 | [Ludothèque](https://github.com/jeremdevgit/ludotheque) | macOS | Game library and launcher |
-| [Decklight](https://github.com/jeremdevgit/decklight) | Windows, macOS, Linux | Virtual Stream Deck with USB control |
-| [lj-hub](https://github.com/jeremdevgit/lj-hub) | Windows, macOS, Linux | Logitech device profile manager |
-| [Suite Libre](https://github.com/jeremdevgit/suite-libre) | Browser | Six tools without an account |
+| [Suite Libre](https://jeremdevgit.github.io/suite-libre/) | Browser | Six tools without an account |
 | [Batailles de France](https://github.com/jeremdevgit/batailles-de-france) | Browser | Real-time strategy game |

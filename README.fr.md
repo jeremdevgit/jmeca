@@ -145,18 +145,19 @@ La sauvegarde automatique `.bak` peut garder l’ancien mot de passe après un c
 
 Le code source est publié sous GPL-3.0-or-later, avec **jeremdevgit** comme éditeur dans les métadonnées. Le workflow `.github/workflows/build.yml` se lance à chaque mise à jour de `main`, sur les PR et manuellement ; il compile les versions Windows, macOS et Linux. Les artefacts doivent être essayés sur chaque plateforme avant une diffusion comme versions recommandées. La signature Apple ad hoc n’est pas une notarisation. Voir `THIRD_PARTY.md` pour les sources et licences des ressources tierces.
 
-## Mes logiciels
+## Mes autres logiciels
 
-Tous libres et gratuits — [github.com/jeremdevgit](https://github.com/jeremdevgit) :
+Tous libres, gratuits et sans publicité — [github.com/jeremdevgit](https://github.com/jeremdevgit) :
 
 | Logiciel | Plateforme | En bref |
 |---|---|---|
-| [Boîte à outils](https://github.com/jeremdevgit/boite-a-outils) | Windows, macOS | Entretien de l’ordinateur et recherche de fichiers |
-| [Carnet de notes](https://github.com/jeremdevgit/carnet-rust) | Windows | Notes chiffrées et synchronisation expérimentale |
-| [Pomme](https://github.com/jeremdevgit/pomme) | Windows | Apple Music et musique locale |
-| [rJb](https://github.com/jeremdevgit/rjb) | Windows | Éclairage RGB |
-| [Ludothèque](https://github.com/jeremdevgit/ludotheque) | macOS | Bibliothèque et lanceur de jeux |
+| [AutoDex](https://github.com/jeremdevgit/autodex) | Windows, macOS, Linux | Jeu de collection de voitures avec reconnaissance de photos sur l'appareil |
+| [Boîte à outils](https://github.com/jeremdevgit/boite-a-outils) | Windows, macOS | Entretien de l'ordinateur, nettoyage et recherche de fichiers |
+| [Carnet de notes](https://github.com/jeremdevgit/carnet-rust) | Windows | Carnets chiffrés et synchronisation expérimentale |
 | [Decklight](https://github.com/jeremdevgit/decklight) | Windows, macOS, Linux | Stream Deck virtuel avec contrôle USB |
-| [lj-hub](https://github.com/jeremdevgit/lj-hub) | Windows, macOS, Linux | Gestionnaire de profils Logitech |
-| [Suite Libre](https://github.com/jeremdevgit/suite-libre) | Navigateur | Six outils sans compte |
+| [LJ Hub](https://github.com/jeremdevgit/lj-hub) | Windows, macOS, Linux | Gestionnaire de profils pour appareils Logitech |
+| [Pomme](https://github.com/jeremdevgit/pomme) | Windows | Lecteur de musique Apple Music et fichiers locaux |
+| [rJb](https://github.com/jeremdevgit/rjb) | Windows | Contrôle de l'éclairage RGB |
+| [Ludothèque](https://github.com/jeremdevgit/ludotheque) | macOS | Bibliothèque et lanceur de jeux |
+| [Suite Libre](https://jeremdevgit.github.io/suite-libre/) | Navigateur | Six outils sans compte |
 | [Batailles de France](https://github.com/jeremdevgit/batailles-de-france) | Navigateur | Jeu de stratégie en temps réel |
